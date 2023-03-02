@@ -1,4 +1,4 @@
-import { ActivityIndicator, StyleSheet, FlatList } from 'react-native';
+import { ActivityIndicator, StyleSheet, FlatList, TextInput, Button } from 'react-native';
 
 import { Text, View } from '../components/Themed';
 import { gql, useQuery } from '@apollo/client';
@@ -39,6 +39,7 @@ const query = gql`
 
 
 export default function TabOneScreen() {
+  const {search, setSearch}= useState("");
   const { data, loading, error } = useQuery(query, {
    variables: { q: 'Star Wars'}, });
 
@@ -49,6 +50,11 @@ export default function TabOneScreen() {
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <TextInput placeholder="Search...." style={styles.input} />
+        <Button title="Search" />
+
+      </View>
       {loading && <ActivityIndicator />}
       {error && (
         <>
@@ -88,5 +94,17 @@ const styles = StyleSheet.create({
     marginVertical: 30,
     height: 1,
     width: '80%',
+  },
+  header: {
+    flexDirection: 'row',
+    aliginItems: 'center',
+  },
+  input: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: "green",
+    borderRadius: 5,
+    padding: 10,
+    marginVertical: 5,
   },
 });
