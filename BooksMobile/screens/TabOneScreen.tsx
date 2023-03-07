@@ -45,7 +45,7 @@ export default function TabOneScreen() {
   const [provider, setProvider] = useState<"googleBooksSearch" | "openLibrarySearch">("googleBooksSearch");
   const [runQuery, { data, loading, error }] = useLazyQuery(query);
 
-  const parseBook = (item): Book => {
+  const parseBook = (item: any): Book => {
     if (provider === 'googleBooksSearch') {
       return { 
               image: item.volumeInfo.imageLinks?.thumbnail,
@@ -56,8 +56,8 @@ export default function TabOneScreen() {
     }
       return{
       image: '`https://covers.openlibrary.org/b/olid/${item.cover_edition_key}-M.jpg`,',
-      title: 'item.title',
-      authors: 'item.author_name',
+      title: item.title,
+      authors: item.author_name,
       isbn: item.isbn?.[0],
       }
   };
