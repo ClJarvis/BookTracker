@@ -12,9 +12,9 @@ const BookItem = ({ book }: BookItemProps) => {
       <Image source={{ uri: book.image }} style={styles.image} />
       <View style={styles.contentContainer}>
        <Text style={styles.title}>{book.title}</Text> 
-{/* 
+ 
         <Text>by {book.authors?.join(", ")}</Text>
-*/}
+
       </View>
     </View>
   );

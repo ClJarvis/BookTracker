@@ -44,23 +44,23 @@ export default function TabOneScreen() {
   const [search, setSearch] = useState("");
   const [provider, setProvider] = useState<"googleBooksSearch" | "openLibrarySearch">("googleBooksSearch");
   const [runQuery, { data, loading, error }] = useLazyQuery(query);
-
-  const parseBook = (item: any): Book => {
-    if (provider === 'googleBooksSearch') {
-      return { 
-              image: item.volumeInfo.imageLinks?.thumbnail,
-              title: item.volumeInfo.title, 
-              authors: item.volumeInfo.authors,
-              isbn: item.volumeInfo.industryIdentifiers?.[0]?.identifier,
-             };
-    }
-      return{
-      image: '`https://covers.openlibrary.org/b/olid/${item.cover_edition_key}-M.jpg`,',
+const parseBook = (item) => {
+  if (provider === "googleBooksSearch") {
+    return {
+      title: item.volumeInfo.title,
+      image: item.volumeInfo.imageLinks?.thumbnail,
+      authors: item.volumeInfo.authors,
+      isbn: item.volumeInfo.industryIdentifiers?.[0]?.identifier,
+    };
+  } else {
+    return {
       title: item.title,
       authors: item.author_name,
+      image: `https://covers.openlibrary.org/b/olid/${item.cover_edition_key}-M.jpg`,
       isbn: item.isbn?.[0],
-      }
-  };
+    };
+  }
+};
 
 
 
@@ -79,17 +79,17 @@ export default function TabOneScreen() {
       <View style={styles.tabs}>
         <Text style={
           provider === "googleBooksSearch" 
-          ? { fontWeight: "bold", color: "red" } 
+          ? { fontWeight: "bold", color: "red", padding: 16, } 
           : {} 
           }
-          onPress={() => setProvider("googleBookSearch")}
+          onPress={() => setProvider("googleBooksSearch")}
           >
 
           Google Books</Text>
 
         <Text style={
           provider === "openLibrarySearch" 
-          ? { fontWeight: "bold", color: "red" } 
+          ? { fontWeight: "bold", color: "green", padding: 16, } 
           : {} 
           }
           onPress={() => setProvider("openLibrarySearch")}
@@ -150,10 +150,10 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   tabs: {
-    flexDirection: "row",
-    justifyContent: "space-around",
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     height: 50,
-    alignItems: "center",
+    alignItems: 'center',
   },
 });
 
