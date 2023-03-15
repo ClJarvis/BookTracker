@@ -6,7 +6,6 @@ import { useMyBooks } from '../context/MyBooksProvider';
 
 export default function TabTwoScreen() {
   const { test } = useMyBooks();
-  console.log(test);
   return (
     <View style={styles.container}>
 

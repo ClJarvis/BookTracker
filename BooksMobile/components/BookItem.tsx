@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet, Image, Pressable } from "react-native";
+import { View, Text, StyleSheet, Image, Pressable, Button } from "react-native";
 import React from "react";
-import { UseMyBooks } from "../context/MyBooksProvider";
+import { useMyBooks } from "../context/MyBooksProvider";
 import Colors from "../constants/Colors";
 
 type BookItemProps = {
@@ -12,20 +12,23 @@ const BookItem = ({ book }: BookItemProps) => {
   const saved = isBookSaved(book);
 
   return (
+    <View style={styles.container}>
 
+      <Image source={{ uri: book.image }} style={styles.image} />
       <View style={styles.contentContainer}>
        <Text style={styles.title}>{book.title}</Text> 
  
         <Text>by {book.authors?.join(", ")}</Text>
+       <Text style={styles.isbn}>ISBN: {book.isbn}</Text> 
+            
             <Pressable
-              style={[styles.button, saved ? { backgroundColor: 'lightgray' } : {}]}
+              style={[styles.button, saved ? { backgroundColor: "lightgray" } : {}]}
               onPress={() => onToggleSaved(book)}
               >
-                <Text style={styles.buttonText}>{saved ? 'Remove' : 'Want to Read'}</Text>
+                <Text style={styles.buttonText}>{saved ? "Remove" : "Want to Read"}</Text>
               </Pressable>
 
-    <View style={styles.container}>
-      <Image source={{ uri: book.image }} style={styles.image} />
+
       </View>
     </View>
   );
@@ -38,7 +41,6 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    aspectRatio: 2 / 3,
     marginRight: 10,
   },
   contentContainer: {
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
   },
   title: {
-    fontSize: 60,
+    fontSize: 16,
     fontWeight: "500",
   },
   button: {

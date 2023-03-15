@@ -1,4 +1,4 @@
-import {createContext, useContext} from 'react';
+import {createContext, useContext, useState} from 'react';
 
 type MyBooksContextType = {
 	onToggleSaved: (book: Book) => void;
@@ -6,9 +6,9 @@ type MyBooksContextType = {
 	savedBooks: Book[];
 };
 
-const MyBooksContext = createContext<MyBooksContextType>s({
-	onToggleSaved: () => {};
-	isBookSaved: () => false;
+const MyBooksContext = createContext<MyBooksContextType>({
+	onToggleSaved: () => {},
+	isBookSaved: () => false,
 	savedBooks: [],
 });
 
@@ -17,24 +17,24 @@ type Props = {
 };
 
 const MyBooksProvider = ({children}: Props) => {
-	const [savedBooks, setSavedBooks] = useState,Book[]>([]);
+	const [savedBooks, setSavedBooks] = useState<Book[]>([]);
 
 	const areBooksTheSame = (a: Book, b: Book) => {
 	return JSON.stringify(a) === JSON.stringify(b);
 	}
 
-	const isBookSaved = (book, Book) => {
-		return savedBooks.some[(savedBook) => areBooksTheSame(savedBook, book));
-	}
+	const isBookSaved = (book: Book) => {
+		return savedBooks.some((savedBook) => areBooksTheSame(savedBook, book));
+	};
 
 	const onToggleSaved = (book: Book) => {
-		if (isBookSaved(Book)) {
+		if (isBookSaved(book)) {
 
-			setSavedBooks{(books) => books.filter((savedBooks) => !areBooksTheSame(savedBook, book))
-			);s
+			setSavedBooks((books) => books.filter((savedBook) => !areBooksTheSame(savedBook, book))
+			);
 
 		} else {
-			setSavedBooks{(books) => [book, ...books]};
+			setSavedBooks((books) => [book, ...books]);
 		}
 
 	};
