@@ -3,4 +3,5 @@ type Book = {
 	title: string;
 	authors: string[];
 	isbn: string;
+	pages: string;
 };

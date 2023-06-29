@@ -20,6 +20,7 @@ const BookItem = ({ book }: BookItemProps) => {
  
         <Text>by {book.authors?.join(", ")}</Text>
        <Text style={styles.isbn}>ISBN: {book.isbn}</Text> 
+        <Text style={styles.pages}>Pages: {book.pages}</Text> 
             
             <Pressable
               style={[styles.button, saved ? { backgroundColor: "lightgray" } : {}]}

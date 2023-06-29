@@ -15,6 +15,7 @@ const query = gql`
           authors
           averageRating
           description
+          pageCount
           imageLinks {
             thumbnail
           }
@@ -33,6 +34,7 @@ const query = gql`
         title
         cover_edition_key
         isbn
+        number_of_pages_median
       }
     }
   }
@@ -51,6 +53,7 @@ const parseBook = (item) => {
       image: item.volumeInfo.imageLinks?.thumbnail,
       authors: item.volumeInfo.authors,
       isbn: item.volumeInfo.industryIdentifiers?.[0]?.identifier,
+      pages: item.volumeInfo.pageCount,
     };
   } else {
     return {
@@ -58,6 +61,7 @@ const parseBook = (item) => {
       authors: item.author_name,
       image: `https://covers.openlibrary.org/b/olid/${item.cover_edition_key}-M.jpg`,
       isbn: item.isbn?.[0],
+      pages: item.number_of_pages_median,
     };
   }
 };
