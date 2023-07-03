@@ -11,6 +11,10 @@ const BookItem = ({ book }: BookItemProps) => {
   const { isBookSaved, onToggleSaved } = useMyBooks()
   const saved = isBookSaved(book);
 
+  const pagesRead = "";
+const totalPagesRead = pagesRead + book.pages;
+console.log(totalPagesRead);
+
   return (
     <View style={styles.container}>
 
@@ -26,12 +30,14 @@ const BookItem = ({ book }: BookItemProps) => {
               style={[styles.button, saved ? { backgroundColor: "lightgray" } : {}]}
               onPress={() => onToggleSaved(book)}
               >
-                <Text style={styles.buttonText}>{saved ? "Remove" : "Want to Read"}</Text>
+                <Text style={styles.buttonText}>{saved ? "Remove" : "I Read this!"}</Text>
               </Pressable>
 
 
       </View>
     </View>
+
+
   );
 };
 
