@@ -7,13 +7,12 @@ type BookItemProps = {
   book: Book;
 };
 
+
 const BookItem = ({ book }: BookItemProps) => {
   const { isBookSaved, onToggleSaved } = useMyBooks()
   const saved = isBookSaved(book);
 
-  const pagesRead = "";
-const totalPagesRead = pagesRead + book.pages;
-console.log(totalPagesRead);
+
 
   return (
     <View style={styles.container}>

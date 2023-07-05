@@ -1,4 +1,4 @@
-import { StyleSheet, FlatList, } from 'react-native';
+import { StyleSheet, FlatList, Text } from 'react-native';
 
 import { View } from '../components/Themed';
 
@@ -9,12 +9,17 @@ export default function TabTwoScreen() {
   const { savedBooks } = useMyBooks();
   console.log(savedBooks);
 
+const pagesRead = (sum => value => sum += value)(0);
+const totalPagesRead = pagesRead ;
+console.log(savedBooks.length);
+
   return (
     <View style={styles.container}>
       <FlatList 
         data={savedBooks}
         renderItem={({ item }) => <BookItem book={item} />}
       />
+          <Text style={{fontSize: '1.5rem', background:'rgb(70, 170, 113)', padding: 6,}}>    Number of Books Read: {savedBooks.length}</Text>
     </View>
   );
 }
@@ -32,5 +37,9 @@ const styles = StyleSheet.create({
     marginVertical: 30,
     height: 1,
     width: '80%',
+  },
+    text: {
+    fontSize: 40,
+    fontWeight: 'bold',
   },
 });
