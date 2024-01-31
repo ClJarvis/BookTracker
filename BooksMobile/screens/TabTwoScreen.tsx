@@ -17,7 +17,7 @@ const totalPagesRead = pagesRead; */
   return accumulator += savedBooks.pagesRead;
 }, 0) */
 
-let totalPagesRead = 1;
+let totalPagesRead = 0;
 savedBooks.forEach(savedBooks => {
   totalPagesRead += savedBooks.pages;
 })
@@ -32,7 +32,7 @@ console.log(savedBooks[1].pages);
         data={savedBooks}
         renderItem={({ item }) => <BookItem book={item} />}
       />
-          <Text style={{fontSize: '1.5rem', background:'rgb(70, 170, 113)', padding: 6,}}>    Number of Books Read: {savedBooks.length} <br /> Total Pages read: {totalPagesRead}</Text> 
+          <Text style={{fontSize: '1.5rem', background:'rgb(3 169 244 / 60%)', padding: 6,}}> Number of Books Read: {savedBooks.length} <br /> Total Pages Read: {totalPagesRead}</Text> 
     </View>
   );
 }
